@@ -14,7 +14,7 @@ class CartController extends Controller{
         parent::__construct();
     }
 
-    public function add(Request $request){                
+    public function ajaxAddToCartAction(Request $request){
         $_SESSION['cart']->addCart($request->get('products_id'), $request->get('cart_quantity'));
                 
         return new Response(json_encode(array(
@@ -25,6 +25,14 @@ class CartController extends Controller{
             ) ,
         	'messages' => Plugin::get('riLog.Logs')->getAsArray())
             )
-        );          
+        );
+	}
+
+    public function ajaxRemoveFromCartAction(Request $request){
+          $_SESSION['cart']->remove($request->get('id'));
+          return new Response(json_encode(array(
+                                                'bool'=>'true',
+                                                'totalItems'=> count($_SESSION['cart']->contents)
+                                            )));        
     }
 }
