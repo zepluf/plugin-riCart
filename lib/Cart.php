@@ -29,7 +29,7 @@ class Cart extends ZCCart{
 	      $_SESSION['new_products_id_in_cart'] = $products_id;
 	    }
 
-	$qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
+	    $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
 
 	    if ($this->in_cart($products_id)) {
 	      $this->update_quantity($products_id, $qty, $attributes);

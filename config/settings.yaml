@@ -5,3 +5,9 @@ routes:
   ajax_remove_from_cart:
     pattern:  /ajax_remove_from_cart/
     defaults: { _controller: plugins\riCart\CartController::ajaxRemoveFromCartAction }
+  ajax_get_cart:
+    pattern:  /ajax_get_cart/
+    defaults: { _controller: plugins\riCart\CartController::ajaxGetCartAction }
+  ajax_edit_cart:
+    pattern:  /ajax_edit_cart/
+    defaults: { _controller: plugins\riCart\CartController::ajaxEditCartAction }
