@@ -2,10 +2,8 @@
 
 namespace plugins\riCart;
 
-use plugins\riPlugin\Plugin;
-
 use Symfony\Component\HttpFoundation\Request;
-use plugins\riSimplex\Controller;
+use Zepluf\Bundle\StoreBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class CartController extends Controller{
@@ -32,7 +30,7 @@ class CartController extends Controller{
     public function ajaxGetCartAction(){
         return $this->renderJson((array(
                     'box_cart_content' => $this->view->render("riCart::_box_shopping_cart.php"),
-                    'messages' => Plugin::get('riLog.Logs')->getAsArray())
+                    'messages' => $this->container->get('riLog.Logs')->getAsArray())
             )
         );
     }

@@ -5,6 +5,17 @@ use plugins\riPlugin\Plugin;
 
 class Cart extends ZCCart{
 
+    /**
+     * @var
+     */
+    protected $logger;
+
+    // TODO: we will need to pass the logger in a better way
+    public function __construct()
+    {
+        $this->logger = Plugin::get('riLog.Logs');
+    }
+
 	/**
 	   * Method to add an item to the cart
 	   *
@@ -148,7 +159,7 @@ class Cart extends ZCCart{
         }
         
         if ($adjust_max == 'true') {
-            Plugin::get('riLog.Logs')->add(array('message' => ERROR_MAXIMUM_QTY.$products_id, 'type' => 'caution'));            
+            $this->logger->add(array('message' => ERROR_MAXIMUM_QTY.$products_id, 'type' => 'caution'));
         }
         
         $this->add_cart($products_id, $this->get_quantity(zen_get_uprid($products_id, $real_ids))+$new_qty, $real_ids, $notify);
